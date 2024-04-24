@@ -1,0 +1,29 @@
+### REGISTER
+# email - unique, required ;  password  - required ; first_name - required ; last_name : optional
+POST http://localhost:8000/api/user/register/
+Content-Type: application/json
+
+{"password":"ks" , "email":"ks1@gmail.com"  , "first_name":"jhon" , "last_name":""}
+
+### LOGIN 
+# email - required ; password - required 
+POST http://localhost:8000/api/user/login/
+Content-Type: application/json
+
+{"email":"ks1@gmail.com" , "password":"ks" }
+
+### TEST
+# returns ID of user upon sucessfull request
+GET http://localhost:8000/api/test/protect/ 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTk4MDQwLCJpYXQiOjE3MTM5ODIwNDAsImp0aSI6IjgzOTM3NGJjZjQ5NDQwNGI4NTFjZTM0Mjk5MDE4ZjgzIiwidXNlcl9pZCI6Mn0.8Y1RKM1gjzsertrgiDX854c0UiPjsMEizLXE_caMPM4
+
+### NOTES
+#returns all the notes of a user ; protected route
+GET  http://localhost:8000/api/notes/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTk4MDQwLCJpYXQiOjE3MTM5ODIwNDAsImp0aSI6IjgzOTM3NGJjZjQ5NDQwNGI4NTFjZTM0Mjk5MDE4ZjgzIiwidXNlcl9pZCI6Mn0.8Y1RKM1gjzsertrgiDX854c0UiPjsMEizLXE_caMPM4
+### NOTES BY ID
+GET  http://localhost:8000/api/notes/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTk4MDQwLCJpYXQiOjE3MTM5ODIwNDAsImp0aSI6IjgzOTM3NGJjZjQ5NDQwNGI4NTFjZTM0Mjk5MDE4ZjgzIiwidXNlcl9pZCI6Mn0.8Y1RKM1gjzsertrgiDX854c0UiPjsMEizLXE_caMPM4
