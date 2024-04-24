@@ -6,9 +6,15 @@ from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
 
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 from note.renderer import UserRenderer
-from note.serializers import UserSerializer, LoginSerializer, NotebookSerializer
+from note.serializers import (
+    UserSerializer,
+    LoginSerializer,
+    NotebookSerializer,
+    CreateNoteSerializer,
+)
 from note.models import CustomUser, Notebook
 
 
@@ -94,9 +100,28 @@ class NoteListAPIView(APIView):
                 status=status.HTTP_401_UNAUTHORIZED,
             )
 
-        notes = Notebook.objects.filter(user=authenticated_user.id)
+        user = get_object_or_404(CustomUser, email=authenticated_user.id)
+
+        notes = Notebook.objects.filter(user=user)
         serializer = NotebookSerializer(notes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        authenticated_user = request.user
+        if authenticated_user is None:
+            return Response(
+                {"detail": "User not authenticated."},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+        serializer = CreateNoteSerializer(data=request.data)
+        user = get_object_or_404(CustomUser, email=authenticated_user.id)
+
+        if serializer.is_valid():
+            serializer.save(user=user, last_modified=timezone.now())
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class NoteDetailAPIView(APIView):
@@ -110,7 +135,20 @@ class NoteDetailAPIView(APIView):
                 {"detail": "User not authenticated."},
                 status=status.HTTP_401_UNAUTHORIZED,
             )
-        user = request.user
-        note = get_object_or_404(Notebook, user=user.id, id=note_id)
+        user = get_object_or_404(CustomUser, email=authenticated_user.id)
+        note = get_object_or_404(Notebook, user=user, id=note_id)
         serializer = NotebookSerializer(note)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, note_id):
+        notebook = get_object_or_404(Notebook, id=note_id)
+        serializer = CreateNoteSerializer(notebook, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save(last_modified=timezone.now())
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, note_id):
+        notebook = get_object_or_404(Notebook, pk=note_id)
+        notebook.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

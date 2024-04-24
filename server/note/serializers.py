@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from note.models import CustomUser, Notebook
+from django.utils import timezone
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,3 +27,9 @@ class NotebookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notebook
         fields = ["id", "user", "title", "content", "created_at", "last_modified"]
+
+
+class CreateNoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notebook
+        fields = ["title", "content"]
