@@ -19,6 +19,7 @@ urlpatterns = [
         views.NoteDetailAPIView.as_view(),
         name="list_note_by_id",
     ),
+    path("auth/me/", views.DashBoardAPIView.as_view(), name="get_data_of_user"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),

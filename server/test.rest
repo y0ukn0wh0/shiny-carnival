@@ -3,20 +3,20 @@
 POST http://localhost:8000/api/user/register/
 Content-Type: application/json
 
-{"password":"ks" , "email":"ks1@gmail.com"  , "first_name":"jhon" , "last_name":""}
+{"password":"jeski" , "email":"jeski@gmail.com"  , "first_name":"jhon" , "last_name":""}
 
 ### LOGIN 
 # email - required ; password - required 
 POST http://localhost:8000/api/user/login/
 Content-Type: application/json
 
-{"email":"ks1@gmail.com" , "password":"ks" }
+{"email":"jeski@gmail.com" , "password":"jeski" }
 
 ### TEST
 # returns ID of user upon sucessfull request
 GET http://localhost:8000/api/test/protect/ 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MjAzODAzLCJpYXQiOjE3MTM5ODc4MDMsImp0aSI6IjgyNzgzNzkyZTkzYTQzYmRiYzk1YWYxM2QxNjYyMWM3IiwiZW1haWwiOiJrczFAZ21haWwuY29tIn0.zhFgvAmHCF9jvSvZo081M0emriszD-eMujs_8KgqfI4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MjM3NTI0LCJpYXQiOjE3MTQwMjE1MjQsImp0aSI6ImQ4M2Y0ODkwNWVmNjQxNDBhMzgwMTQwY2YzMjY3ZDA0IiwiZW1haWwiOiJqZXNraUBnbWFpbC5jb20ifQ.RmIqhh_J1R09NxuCfppsustCGB-80jhvKwfH37joem8
 ### NOTES
 #returns all the notes of a user ; protected route
 GET  http://localhost:8000/api/notes/

@@ -152,3 +152,18 @@ class NoteDetailAPIView(APIView):
         notebook = get_object_or_404(Notebook, pk=note_id)
         notebook.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class DashBoardAPIView(APIView):
+    authentication_classes = [JWTTokenUserAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self , request) :
+        authenticated_user = request.user
+        if authenticated_user is None:
+            return Response(
+                {"detail": "User not authenticated."},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+        user = get_object_or_404(CustomUser, email=authenticated_user.id)
+        user_serializer = UserSerializer(user)
+        return Response(user_serializer.data , status=status.HTTP_200_OK)
+        
