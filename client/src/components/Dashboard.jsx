@@ -12,7 +12,7 @@ function Dashboard() {
     return <Navigate to="/login" replace />;
   }
 
-  return <h1>Dashboard: Protected Content Here</h1>;
+  return <h1 className="text-orange">Dashboard: Protected Content Here</h1>;
 }
 
 export default Dashboard;

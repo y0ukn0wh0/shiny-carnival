@@ -25,36 +25,45 @@ const Registration = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          value={first_name}
-          onChange={(e) => setFirstname(e.target.value)}
-          placeholder="First Name"
-          required
-        />
-        <input
-          value={last_name}
-          onChange={(e) => setLastname(e.target.value)}
-          placeholder="Last Name"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="flex justify-center items-center h-screen">
+      <div className=" bg-ash-black  p-8 rounded-lg shadow-md w-96 space-y-6">
+        <h2 className="text-center text-orange text-3xl font-bold">Register</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+            className="block w-full rounded-md border-blacky-300 px-3 py-2 focus:outline focus:ring-primary-500 focus:border-primary-500 placeholder-blacky  bg-tertiary"
+          />
+          <input
+            value={first_name}
+            onChange={(e) => setFirstname(e.target.value)}
+            placeholder="First Name"
+            required
+            className="block w-full rounded-md border-gray-300 px-3 py-2 focus:outline focus:ring-primary-500 focus:border-primary-500 placeholder-blacky  bg-tertiary"
+          />
+          <input
+            value={last_name}
+            onChange={(e) => setLastname(e.target.value)}
+            placeholder="Last Name"
+            className="block w-full rounded-md border-gray-300 px-3 py-2 focus:outline focus:ring-primary-500 focus:border-primary-500 placeholder-blacky  bg-tertiary"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className="block w-full rounded-md border-gray-300 px-3 py-2 focus:outline focus:ring-primary-500 focus:border-primary-500 placeholder-blacky  bg-tertiary"
+          />
+          <button className="px-12 py-4 rounded-full bg-orange font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-orange transition-colors duration-200">
+            Register
+          </button>
+        </form>
+
+        <div>{message && <p>{message}</p>}</div>
+      </div>
     </div>
   );
 };

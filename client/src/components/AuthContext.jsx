@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); // <-- Add a loading state
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("access_token");
     setToken(storedToken);
     setLoading(false); // Mark loading as complete after setting the token
   }, []);
