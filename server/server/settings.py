@@ -20,13 +20,18 @@ SECRET_KEY = SECRET_KEY
 from environ import DEBUG
 
 DEBUG = DEBUG
+DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = []
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
-# Application definition
-CORS_ORIGIN_WHITELIST = [
+
+
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://shiny-carnival.onrender.com"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
