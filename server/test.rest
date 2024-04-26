@@ -10,7 +10,7 @@ Content-Type: application/json
 POST http://localhost:8000/api/user/login/
 Content-Type: application/json
 
-{"email":"jeski@gmail.com" , "password":"jeski" }
+{"email":"jesksi@gmail.com" , "password":"jeski" }
 
 ### TEST
 # returns ID of user upon sucessfull request
