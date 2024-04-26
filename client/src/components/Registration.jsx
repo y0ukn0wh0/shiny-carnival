@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BASE_URI } from "../App";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Registration = () => {
   const [first_name, setFirstname] = useState("");
   const [email, setEmail] = useState("");
@@ -18,15 +20,29 @@ const Registration = () => {
         password,
       });
       setMessage(response.data.message);
+      toast.success("successfully registered");
     } catch (error) {
       console.error("Registration failed:", error.response.data.error);
       setMessage(error.response.data.error);
+      toast.error("An unexpected error occurred. Please try again.");
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className=" bg-ash-black  p-8 rounded-lg shadow-md w-96 space-y-6">
+      <ToastContainer
+        position="top-right"
+        autoClose={false}
+        limit={1}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        theme="dark"
+        transition:Bounce
+      />
+      <div className=" bg-ash-black  p-8 rounded-lg  w-96 space-y-6">
         <h2 className="text-center text-orange text-3xl font-bold">Register</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <input

@@ -3,7 +3,8 @@ import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import { BASE_URI } from "../App";
-import { motion } from "framer-motion";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,17 +29,30 @@ const Login = () => {
         setErrorMessage(error.response.data); // Set the error message if present in the error response
       } else {
         setErrorMessage("An unexpected error occurred. Please try again.");
+        toast.error("An unexpected error occurred. Please try again.");
       }
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-ash-black  p-8 rounded-lg shadow-md w-96 space-y-6 ">
+      <ToastContainer
+        position="top-right"
+        autoClose={false}
+        limit={1}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        theme="dark"
+        transition:Bounce
+      />
+      <div className="bg-ash-black bg-opacity-100 p-8 rounded-lg  w-96 space-y-6 ">
         <h2 className="text-center text-orange text-3xl font-bold">Login</h2>
-        {errorMessage && (
+        {/* {errorMessage && (
           <div style={{ color: "red" }}>{errorMessage}</div>
-        )}{" "}
+        )}{" "} */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <input
             type="email"
