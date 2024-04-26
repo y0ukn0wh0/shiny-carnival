@@ -31,7 +31,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://shiny-carnival.onrender.com"
+    'https://shiny-carnival-1.onrender.com',
 ]
 CORS_ALLOW_CREDENTIALS = True
 
