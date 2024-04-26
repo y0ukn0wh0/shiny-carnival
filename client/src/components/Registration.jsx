@@ -23,8 +23,12 @@ const Registration = () => {
       toast.success("successfully registered");
     } catch (error) {
       console.error("Registration failed:", error.response.data.error);
-      setMessage(error.response.data.error);
-      toast.error("An unexpected error occurred. Please try again.");
+      if (error.response && error.response.data.errors) {
+        toast.error(`${error.response.data.errors.email}`);
+      } else {
+        setMessage(error.response.data.error);
+        toast.error("An unexpected error occurred. Please try again.");
+      }
     }
   };
 

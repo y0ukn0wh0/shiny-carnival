@@ -25,7 +25,9 @@ const Login = () => {
       console.error("Authentication failed:", error);
       setToken(null);
       localStorage.removeItem("access_token");
-      if (error.response && error.response.data) {
+      if (error.response && error.response.data.message) {
+        toast.error(`${error.response.data.message}`);
+
         setErrorMessage(error.response.data); // Set the error message if present in the error response
       } else {
         setErrorMessage("An unexpected error occurred. Please try again.");

@@ -6,20 +6,33 @@ import { Modal, Box, Typography, Button, TextField } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import { BASE_URI } from "../App";
 import { timeAgo } from "../utils/timeAgo";
-import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import Footer from "./Footer";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600, // Adjust the width as needed
+  width: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
   largeIcon: {
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
+    color: "#fd7702",
+    fontSize: "3rem",
+    verticalAlign: "middle",
+  },
+  exitIcon: {
+    width: 40,
+    height: 40,
+    fontSize: "2rem",
+    marginLeft: "auto",
+    color: "#ffffff",
   },
 };
 
@@ -35,10 +48,10 @@ function ListButton({ title, onClick, created, modified }) {
       sx={{}}
     >
       <button
-        className="px-4 py-2 w-full text-left text-gray-800 hover:bg-gray-200 transition-colors duration-200"
+        className="px-4 py-2 w-full text-left shadow-[inset_0_0_0_2px_#616467]  tracking-widest font-bold bg-transparent hover:bg-[#616467] hover:text-white transition duration-200"
         onClick={onClick}
       >
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center text-orange font-semibold">
           <span>{title}</span>
         </div>
       </button>
@@ -54,7 +67,7 @@ function Dashboard() {
   const [editContent, setEditContent] = useState("");
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
-
+  const navigate = useNavigate();
   const { token, loading } = useContext(AuthContext);
 
   useEffect(() => {
@@ -221,9 +234,28 @@ function Dashboard() {
         </Box>
       </Modal>
       <div>
-        <h1 className="text-2xl font-bold mb-4">Notes</h1>
+        <div className="flex items-center">
+          <h1 className="text-[3rem] font-bold mb-4 text-center text-orange flex-grow">
+            Your Notes
+          </h1>
+          <Tooltip
+            title={`Click Here To Add Note  `}
+            enterDelay={100}
+            leaveDelay={100}
+            arrow
+            sx={{}}
+          >
+            <Button onClick={() => setOpenModal(true)}>
+              <BorderColorIcon style={style.largeIcon} />
+            </Button>
+          </Tooltip>
+          <Button onClick={() => navigate("/login")}>
+            <LogoutIcon style={style.exitIcon} />
+          </Button>
+        </div>
+
         <div className="max-w-md mx-auto">
-          <div className="bg-white shadow-md rounded-lg p-4">
+          <div className=" bg-quard shadow-md rounded-lg p-4">
             {notes.map((note, index) => (
               <ListButton
                 key={index}
@@ -236,9 +268,8 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <Button onClick={() => setOpenModal(true)}>
-        <NoteAddIcon style={style.largeIcon}></NoteAddIcon>
-      </Button>
+
+      <Footer />
     </div>
   );
 }
