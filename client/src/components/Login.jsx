@@ -73,6 +73,14 @@ const Login = () => {
           <button className="px-12 py-4 rounded-full bg-orange font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-orange transition-colors duration-200">
             Login
           </button>
+          <button
+            onClick={() => {
+              navigate("/register");
+            }}
+            className="text-orange px-1"
+          >
+            Not registered?
+          </button>
         </form>
       </div>
     </div>
