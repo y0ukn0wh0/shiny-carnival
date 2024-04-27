@@ -20,7 +20,7 @@ const Login = () => {
       });
       setToken(response.data.access_token);
       localStorage.setItem("access_token", response.data.access_token);
-      navigate("/dashboard");
+      navigate("/dashboard" , {replace:true});
     } catch (error) {
       console.error("Authentication failed:", error);
       setToken(null);

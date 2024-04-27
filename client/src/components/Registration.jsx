@@ -23,6 +23,7 @@ const Registration = () => {
       });
       setMessage(response.data.message);
       toast.success("successfully registered");
+      navigate("/login", { replace: true });
     } catch (error) {
       console.error("Registration failed:", error.response.data.error);
       if (error.response && error.response.data.errors) {
@@ -92,7 +93,7 @@ const Registration = () => {
             login
           </button>
 
-        <div>{message && <p>{message}</p>}</div>
+        {/* <div>{message && <p>{message}</p>}</div> */}
       </div>
     </div>
   );

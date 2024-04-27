@@ -10,6 +10,7 @@ import Footer from "./Footer";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -69,7 +70,7 @@ function Dashboard() {
   const [newContent, setNewContent] = useState("");
   const navigate = useNavigate();
   const { token, loading } = useContext(AuthContext);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -249,7 +250,7 @@ function Dashboard() {
               <BorderColorIcon style={style.largeIcon} />
             </Button>
           </Tooltip>
-          <Button onClick={() => navigate("/login")}>
+          <Button onClick={() => { navigate("/login", { replace: true });}}>
             <LogoutIcon style={style.exitIcon} />
           </Button>
         </div>
