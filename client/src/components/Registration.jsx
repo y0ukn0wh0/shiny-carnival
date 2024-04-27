@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BASE_URI } from "../App";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Registration = () => {
@@ -9,7 +10,8 @@ const Registration = () => {
   const [last_name, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
+  const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -81,6 +83,14 @@ const Registration = () => {
             Register
           </button>
         </form>
+        <button
+            onClick={() => {
+              navigate("/login");
+            }}
+            className="text-orange px-1"
+          >
+            login
+          </button>
 
         <div>{message && <p>{message}</p>}</div>
       </div>
