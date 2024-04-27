@@ -19,7 +19,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 from environ import DEBUG
 
-DEBUG = False
+DEBUG = True
 # DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = []
