@@ -7,7 +7,7 @@ pip install -r requirements.txt
 echo "done installing requirements ....\n\n\n"
 echo "now collecting static files..\n"
 # Convert static asset files
-python manage.py collectstatic --no-input
+# python manage.py collectstatic --no-input
 echo "done collecting static files ...\n\n\n"
 echo "now applying migrations "
 # Apply any outstanding database migrations
