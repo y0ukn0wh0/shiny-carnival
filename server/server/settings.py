@@ -33,7 +33,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     'https://shiny-carnival-1.onrender.com',
 ]
-CORS_ALLOW_CREDENTIALS = True
 
 INSTALLED_APPS = [
     "corsheaders",
@@ -103,12 +102,16 @@ if DEBUG:
     }
 else :
     DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/note-it',
-        conn_max_age=600
-    )
-}
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT,
+        }
+    }
+    
 
 # Password validation
 
